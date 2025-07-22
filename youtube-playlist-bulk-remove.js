@@ -10,7 +10,8 @@ if (window.trustedTypes && window.trustedTypes.createPolicy) {
 let allVideoData = null
 let selectedVideos = []
 let buttons = []
-let titleAttr = document.querySelector('meta[property="og:title"]')
+let title = document.querySelector('title').innerHTML
+title = title.replace(' - YouTube', '')
 
 let removeButtonText = '<button id="remove-button" style="position:fixed;bottom:30px;right:30px;background-color:red;color:white;font-weight:bold;padding:10px;border:none;border-radius:10px;">Remove Selected</button>'
 let refreshButtonText = '<button id="refresh-button" style="position:fixed;bottom:130px;right:30px;background-color:green;color:white;font-weight:bold;padding:10px;border:none;border-radius:10px;">Refresh Checkboxes</button>'
@@ -58,7 +59,7 @@ async function clickToRemove() {
     // wait for item deletion to be completed before moving on
     await new Promise(resolve => setTimeout(resolve, 200))
   }
-  console.log(`${count} video(s) removed from ${titleAttr.content}.`)
+  console.log(`${count} video(s) removed from ${title}.`)
 }
 
 function removeSelectedVideos() {
